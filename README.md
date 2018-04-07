@@ -20,8 +20,6 @@ The goals / steps of this project are the following:
 [image5]: ./output_images/pipeline_images.png
 [image6]: ./examples/labels_map.png
 [image7]: ./examples/output_bboxes.png
-[video1]: https://youtu.be/B_63zQagew0
-
 
 ---
 
@@ -38,7 +36,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  The figures
 
 I explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed a image from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YUV` color space and HOG parameters of `orientations=11`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `YCrCb` color space and HOG parameters of `orientations=11`, `pixels_per_cell=(14, 14)` and `cells_per_block=(2, 2)`:
 
 
 ![alt text][image2]
@@ -61,8 +59,8 @@ Extracting HOG features from each individual window across the image turns out t
   
 ```
 from skimage.feature import hog  
-orient = 9  
-pix_per_cell = 8  
+orient = 11 
+pix_per_cell = 14
 cell_per_block = 2  
 features, hog_image = hog(img, orientations=orient,
                             pixels_per_cell=(pix_per_cell, pix_per_cell),
@@ -75,15 +73,15 @@ features, hog_image = hog(img, orientations=orient,
 
 #### 2. Pipeline
 
-Ultimately I searched on two scales using YUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector. Here are some example images:
+Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector. Here are some example images:
 
 ![alt text][image4]
 ---
 
 ## Video Implementation
 
-By using `process=image` function I created a video.
-Here's a [link to my video result](./project_video.mp4)
+By using `process_image` function I created a video.
+Here's a [link to my video result](https://youtu.be/sfdABTbb2hE)
 
   
 <br />
@@ -97,7 +95,11 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 Here are example image with corresponding heatmaps,the resulting bounding boxes:
 
-![alt text][image5]
+![alt text][image5]  
+ 
+ 
+ 
+ Then I saved the heatmap across the last 20 frames by using  `deque` function to make the bounding boxes smoother and reduce the false positives. 
 
 
 ---
@@ -106,5 +108,5 @@ Here are example image with corresponding heatmaps,the resulting bounding boxes:
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-At the scene of the shadow area on the road, the classifier detect a lot of false positives. To filtering out of this false positives, I set a high threshold for the heat map. It successed to reduce the false positives, but it also reduce the positive detection area. Therefore it will be needed to find more better color space to avoid detecting the false positive.
+At the scene of the shadow area on the road, the classifier detect a lot of false positives. To filtering out of this false positives, I set a high threshold for the heat map. It successed to reduce the false positives, but it also reduce the positive detection area. Therefore it will be needed to find more better color space to avoid detecting the false positive or augment training image and train the model further.
 
