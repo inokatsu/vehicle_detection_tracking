@@ -1,6 +1,6 @@
 
 # Vehicle Detection and Tracking
-
+![result_fig][image0]
 **Vehicle Detection Project**
 
 The goals / steps of this project are the following:
@@ -13,6 +13,7 @@ The goals / steps of this project are the following:
 * Estimate a bounding box for vehicles detected.
 
 [//]: # (Image References)
+[image0]: ./output_images/project_video_out.mp4.gif
 [image1]: ./output_images/test_images.png
 [image2]: ./output_images/hog_image_example.png
 [image3]: ./examples/sliding_windows.jpg
@@ -32,14 +33,14 @@ The code for this step is contained in 'Get Train Image' of the Jupyter notebook
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  The figures blow shoes a random samples of the both classe images.
 
-![alt text][image1]
+![test_images][image1]
 
 I explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed a image from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=11`, `pixels_per_cell=(14, 14)` and `cells_per_block=(2, 2)`:
 
 
-![alt text][image2]
+![hog_image_example][image2]
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
@@ -75,7 +76,7 @@ features, hog_image = hog(img, orientations=orient,
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector. Here are some example images:
 
-![alt text][image4]
+![find_car_image][image4]
 ---
 
 ## Video Implementation
@@ -95,7 +96,7 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 Here are example image with corresponding heatmaps,the resulting bounding boxes:
 
-![alt text][image5]  
+![pipeline_images][image5]  
  
  
  
