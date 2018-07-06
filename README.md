@@ -1,6 +1,7 @@
 
 # Vehicle Detection and Tracking
 ![result_fig][image0]
+
 **Vehicle Detection Project**
 
 The goals / steps of this project are the following:
