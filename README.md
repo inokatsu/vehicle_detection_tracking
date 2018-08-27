@@ -32,7 +32,7 @@ The goals / steps of this project are the following:
 
 The code for this step is contained in 'Get Train Image' of the Jupyter notebook.
 
-I started by reading in all the `vehicle` and `non-vehicle` images.  The figures blow shoes a random samples of the both classe images.
+I started by reading in all the `vehicle` and `non-vehicle` images.  The figures below show a random samples of the both classe images.
 
 ![test_images][image1]
 
